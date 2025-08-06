@@ -53,7 +53,7 @@ console.log("Updated Student Object:", student);
 // Task 3
 
  //1. Create an array of students.
-let students = [
+var students = [
     { name: "Ali", age: 20, grade: "B", isGraduated: true },
     { name: "Sara", age: 22, grade: "A", isGraduated: false },
     { name: "Kareem", age: 19, grade: "C", isGraduated: true },
@@ -62,11 +62,11 @@ let students = [
 
  //2. Calculate the average age
 
-let totalAge = 0;
-let graduatedCount = 0;
-let notGraduatedCount = 0;
+var totalAge = 0;
+var graduatedCount = 0;
+var notGraduatedCount = 0;
 
-for (let i = 0; i < students.length; i++) {
+for (var i = 0; i < students.length; i++) {
     totalAge += students[i].age;
 
     if (students[i].isGraduated) {
@@ -76,7 +76,7 @@ for (let i = 0; i < students.length; i++) {
     }
 }
 
-let averageAge = totalAge / students.length;
+var averageAge = totalAge / students.length;
 
 //3.Use the Object.keys() and Object.values() methods: 
 console.log("Student Keys and Values:");
@@ -86,7 +86,7 @@ students.forEach((student, index) => {
 });
 
 // 4.Add a new student to the array. 
-let newStudent = {
+var newStudent = {
     name: "Hassan",
     age: 22,
     grade: "A",
@@ -105,7 +105,7 @@ students.forEach(student => {
 });
 
  // 6. Display the following information : 
-let studentNames = students.map(student => student.name);
+var studentNames = students.map(student => student.name);
 
 console.log("\n--- Final Information ---");
 console.log("Student Names:", studentNames.join(", "));
