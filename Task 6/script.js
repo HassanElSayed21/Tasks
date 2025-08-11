@@ -1,5 +1,6 @@
 let productList = [];
 let productId = 1;
+let editProductId = null; 
 
 document.getElementById('addBtn').addEventListener('click', function() {
     let name = document.getElementById('name').value;
@@ -11,14 +12,24 @@ document.getElementById('addBtn').addEventListener('click', function() {
         return;
     }
 
-    let product = {
-        id: productId++,
-        name: name,
-        desc: desc,
-        cat: cat,
-    };
-
-    productList.push(product);
+    if (editProductId !== null) {
+        let product = productList.find(p => p.id === editProductId);
+        if (product) {
+            product.name = name;
+            product.desc = desc;
+            product.cat = cat;
+        }
+        editProductId = null;
+        this.textContent = 'Add';
+    } else {
+        let product = {
+            id: productId++,
+            name: name,
+            desc: desc,
+            cat: cat,
+        };
+        productList.push(product);
+    }
     renderTable();
     clearForm();
 });
@@ -35,9 +46,8 @@ function renderTable() {
             <td>${product.name}</td>
             <td>${product.desc}</td>
             <td>${product.cat}</td>
-
             <td>
-                <button class="action-btn edit-btn">Edit</button>
+                <button class="action-btn edit-btn" onclick="editProduct(${product.id})">Edit</button>
                 <button class="action-btn delete-btn" onclick="deleteProduct(${product.id})">Delete</button>
             </td>
         `;
@@ -46,22 +56,26 @@ function renderTable() {
     });
 }
 
-function deleteProduct(id) {
-    productList = productList.filter(p => p.id !== id);
-    renderTable();
-}
-
 function editProduct(id) {
     let product = productList.find(p => p.id === id);
     if (product) {
         document.getElementById('name').value = product.name;
         document.getElementById('desc').value = product.desc;
         document.getElementById('cat').value = product.cat;
+        document.getElementById('addBtn').textContent = 'Update';
+        editProductId = id;
     }
+}
+
+function deleteProduct(id) {
+    productList = productList.filter(p => p.id !== id);
+    renderTable();
 }
 
 function clearForm() {
     document.getElementById('name').value = '';
     document.getElementById('desc').value = '';
     document.getElementById('cat').selectedIndex = 0;
+    editProductId = null;
+    document.getElementById('addBtn').textContent = 'Add';
 }
