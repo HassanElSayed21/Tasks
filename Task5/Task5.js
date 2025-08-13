@@ -1,29 +1,41 @@
 let items = [];
 
-function add(item) {
-  items.push(item);
+function addItem(item) {
+    items.push(item);
+    console.log(` Added: ${item}`);
 }
 
-function show() {
-  console.log(items);
+function showItems() {
+    console.log(" Items List:");
+    items.forEach((item, index) => {
+        console.log(`${index}: ${item}`);
+    });
 }
 
-function edit(index, newItem) {
-  items[index] = newItem;
+function updateItem(index, newItem) {
+    if (index >= 0 && index < items.length) {
+        console.log(`✏ Updated: ${items[index]} → ${newItem}`);
+        items[index] = newItem;
+    } else {
+        console.log(" Invalid index");
+    }
 }
 
-function remove(index) {
-  items.splice(index, 1);
+function deleteItem(index) {
+    if (index >= 0 && index < items.length) {
+        console.log(` Deleted: ${items[index]}`);
+        items.splice(index, 1);
+    } else {
+        console.log(" Invalid index");
+    }
 }
 
-add("Apple");
-add("Banana");
-show();
+addItem("Apple");
+addItem("Banana");
+showItems();
 
-edit(1, "Orange");
-show();
+updateItem(1, "Mango");
+showItems();
 
-add("Grapes");
-remove(0);
-show();
-
+deleteItem(0);
+showItems();
