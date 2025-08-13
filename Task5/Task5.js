@@ -14,7 +14,7 @@ function showItems() {
 
 function updateItem(index, newItem) {
     if (index >= 0 && index < items.length) {
-        console.log(`✏ Updated: ${items[index]} → ${newItem}`);
+        console.log(` Updated: ${items[index]} → ${newItem}`);
         items[index] = newItem;
     } else {
         console.log(" Invalid index");
@@ -39,3 +39,4 @@ showItems();
 
 deleteItem(0);
 showItems();
+
