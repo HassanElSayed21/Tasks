@@ -1,0 +1,46 @@
+<div class="form-container">
+  <h2>Crud Operation Task </h2>
+
+  <form (ngSubmit)="addOrUpdateProduct()">
+    <input type="text" placeholder="Product Name" [(ngModel)]="product.name" name="name" required>
+    <input type="number" placeholder="Price" [(ngModel)]="product.price" name="price" required>
+    <textarea placeholder="Description" [(ngModel)]="product.description" name="description"></textarea>
+
+    <select [(ngModel)]="product.category" name="category" required>
+      <option value="" disabled>Select Category</option>
+      <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+    </select>
+
+    <button type="submit">{{ isEditing ? 'Update Item' : 'Add Item' }}</button>
+  </form>
+</div>
+
+<hr>
+
+<div class="table-container" *ngIf="products.length > 0">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ p.name }}</td>
+        <td>{{ p.category }}</td>
+        <td>{{ p.description }}</td>
+        <td>{{ p.price | currency }}</td>
+        <td>
+          <button type="button" (click)="editProduct(p)">Edit</button>
+          <button type="button" (click)="deleteProduct(p.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
