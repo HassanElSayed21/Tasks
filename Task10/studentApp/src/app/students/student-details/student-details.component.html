@@ -1,0 +1,12 @@
+<h2>Student Details</h2>
+<p>ID: {{ student?.id }}</p>
+
+<p>
+  Name:
+  <input [(ngModel)]="student.name" placeholder="Enter new name" />
+</p>
+
+<p>Age: {{ student?.age }}</p>
+<p>Major: {{ student?.major }}</p>
+
+<button (click)="saveName()">Save Name</button>

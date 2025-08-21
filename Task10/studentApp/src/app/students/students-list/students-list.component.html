@@ -1,0 +1,8 @@
+<h2>Students List</h2>
+
+<div *ngFor="let s of students">
+  <app-student-card [student]="s">
+    <button [routerLink]="['/students/details', s.id]">View Details</button>
+    <button (click)="deleteStudent(s.id)">Delete</button>
+  </app-student-card>
+</div>
